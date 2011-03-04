@@ -9,12 +9,17 @@
 			background-color:black;
 			margin:0;
 			padding:0;
+			font-family:"Lucida Grande",Arial,sans-serif;
+			
 		}
 		
 		h1{
-			font-family:"Monaco",Arial,sans-serif;
-			color:orange;
+			text-shadow: #000 -1px -1px -1px;
+			font-weight:bold;
+			color:#999;
 			padding:0px;
+			font-size:28px;
+			font-family:Georgia,Times,serif;
 			margin:0;
 			background-color:#222;
 		}
@@ -30,8 +35,8 @@
 			font-weight:normal;
 			overflow:auto;
 			padding: 80px 20px 20px 20px;
-			color:green;
 			font-family:"Monaco",Arial,sans-serif;
+			color:#009200;
 			background-color:black;
 		}
 		
@@ -42,31 +47,41 @@
 			left:0;
 			width:100%;
 			padding:20px;
-			border-bottom:1px dashed yellow;
 			margin:0;
+			-webkit-box-shadow: 0px 0px 10px #000;
+			-moz-box-shadow: 0px 0px 10px #000;
+			-khtml-box-shadow: 0px 0px 10px #000;
+			
 			background-color:#222;
 		}
 		form{
 			position:absolute;
-			right:0px;
-			top:0px;
+			right:60px;
+			top:20px;
 			display:inline-block;
-			width:400px;
+			width:auto;
 			height:auto;
 			padding:10px;
-			background-color:#333;
+			background-color:#444;
+			border-top:none;
+			-moz-border-radius: 10px; 
+			-webkit-border-radius: 10px;
+			border-radius: 10px;
+			-webkit-box-shadow: 0px 0px 10px #000;
+			-moz-box-shadow: 0px 0px 10px #000;
+			-khtml-box-shadow: 0px 0px 10px #000;
+			
 
 		}
 		
 		a{
 			color:#999;
-			font-family:"Monaco",Arial,sans-serif;
 			font-size:12px;
 			font-weight:bold;
 		}
 		
 		.debug{
-			color:green;
+			color:#009200;
 		}
 		.error{
 			color:orange;
@@ -86,6 +101,7 @@
 	<script type="text/javascript" charset="utf-8">
 		$( document ).ready(function(){
 			$( '#methodForm').css( 'opacity', 0.5 );
+			$( '#heading' ).css( 'opacity', 0.8 );
 			
 			$( '#methodForm').mouseover( function(){
 				$( this ).css( 'opacity', 1 );
@@ -121,7 +137,7 @@
 <form id="methodForm" action="<?php echo current_url() ?>" method="POST">
 <select name="log_file">
 <?php foreach ($list as $file ): ?>
-	<option value="<?php echo $file['name'] .$file['attrs'] ?>"><?php echo $file['name'] . $file['suffix'] ?></option>
+	<option value="<?php echo $file['name'] ?>" <?php echo $file['attrs'] ?>><?php echo $file['name'] . $file['suffix'] ?></option>
 <?php endforeach; ?>		
 </select>
 <input type="submit" name="view" value="<?php echo $this->lang->line( 'fire_log_view' ) ?>"/>
