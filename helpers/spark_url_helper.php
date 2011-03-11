@@ -38,6 +38,21 @@ function build_spark_url( $params, $prepend_base=TRUE ){
 	
 }
 
+function param_is_valid( $key, $allowed=array() ){
+	
+	$params = get_spark_params();
+	$val = FALSE;
+	
+	if( isset( $params[ $key ] ) and !empty( $params[ $key ])){
+		if( count( $allowed ) != 0 or in_array( $params[ $key ], $allowed ) ){
+			$val = $params[ $key ];
+		}
+	}
+	
+	return $val;
+	
+}
+
 
 function get_spark_params(){
 	$CI = &get_instance();

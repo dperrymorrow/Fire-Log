@@ -11,3 +11,4 @@ $lang[ 'fire_log_show_debug' ] = 'Show Debug Messages';
 $lang[ 'fire_log_show_info' ] = 'Show Info Messages';
 $lang[ 'fire_log_show_error' ] = 'Show Error Messages';
 $lang[ 'fire_log_show_all' ] = 'Show All';
+$lang[ 'fire_log_no_results_found' ] = 'There were no results that matched your filter criteria.';
