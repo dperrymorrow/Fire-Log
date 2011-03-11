@@ -1,5 +1,10 @@
 <?php
 
 
-$config[ 'fire_log_version' ] = '0.3';
+$config[ 'fire_log_version' ] = '0.4';
 $config[ 'fire_log_strip_tags' ] = TRUE;
+$config[ 'fire_log_param_dilem' ] = "::";
+$config[ 'fire_log_pagination_settings'] = array( 	
+											'full_tag_open' => '<div class="paginationWrapper">',
+											'full_tag_close' => '</div>' 
+										);

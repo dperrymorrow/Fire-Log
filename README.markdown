@@ -21,3 +21,6 @@ Really Simple...
 		$this->load->spark( 'fire_log/[version #]');
 		// thats it, ill take if from there
 	}
+
+- [Log Issues or Suggestions](https://github.com/dperrymorrow/Fire-Log/issues)
+- [Follow me on Twitter](http://twitter.com/dperrymorrow)
