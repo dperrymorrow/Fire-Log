@@ -10,7 +10,8 @@ class Fire_log{
 	public $today ='';
 	public $url_vals = array();
 
-	public function __construct(){
+	public function __construct()
+	{
 
 		$this->CI = &get_instance();
 		$this->CI->load->helper( array('file','url') );	
@@ -28,35 +29,40 @@ class Fire_log{
 		$this->today = 'log-'.date( 'Y-m-d') . '.php';
 
 
-		
 
-		if( isset( $params[ 'file' ] ) and !empty( $params[ 'file' ] )){
+
+		if( isset( $params[ 'file' ] ) and !empty( $params[ 'file' ] ))
+		{
 			$this->log_file = $params[ 'file' ];
 			//	$this->build_heading(  );
 			$this->view();
 
-			}else if( isset( $params[ 'delete' ] )){
+			}else if( isset( $params[ 'delete' ] ))
+			{
 
 				$this->clear_file( $params[ 'delete' ] );
 				log_message( 'info', $this->CI->lang->line( 'fire_log_file_deleted' ) . $params[ 'delete'] );
 
 				$this->log_file = $this->today;
 				redirect( current_url().'/file'.PARAM_DILEM .$this->today);
-			}else{
+			}
+			else
+			{
 				redirect( current_url().'/file'.PARAM_DILEM .$this->today);
 			}
-
-
-
 		}
 
 
 
-		public function view(){
+		public function view()
+		{
 
-			if( $this->log_file == $this->today ){
+			if( $this->log_file == $this->today )
+			{
 				$data[ 'today' ] = TRUE;
-			}else{
+			}
+			else
+			{
 				$data[ 'today' ] = FALSE;
 			}
 
@@ -68,19 +74,23 @@ class Fire_log{
 
 
 
-		public function list_files(){
+		public function list_files()
+		{
 			$list = get_dir_file_info( APPPATH . 'logs' );
 			$filtered_list = array();
 
-			foreach ($list as $file ) {
+			foreach ($list as $file )
+			{
 				$file['attrs'] = '';
 				$file['suffix'] = '';
 
-				if( $file[ 'name' ] == $this->log_file ){
+				if( $file[ 'name' ] == $this->log_file )
+				{
 					$file['attrs'] = 'selected="selected"';
 				}
 
-				if( $file[ 'name' ] == $this->today ){
+				if( $file[ 'name' ] == $this->today )
+				{
 					$file[ 'suffix'] = ' - (' . $this->CI->lang->line( 'fire_log_today' ) . ')';
 				}
 
@@ -89,14 +99,15 @@ class Fire_log{
 			}
 
 			return array_reverse( $filtered_list );
-
 		}
 
-		public function get_file( $log_file ){
+		public function get_file( $log_file )
+		{
 
 			$path = APPPATH . 'logs/' .$log_file;
 
-			if( file_exists( $path )){
+			if( file_exists( $path ))
+			{
 
 				$this->split_files( $path );
 
@@ -111,33 +122,40 @@ class Fire_log{
 				$this->CI->pagination->initialize($config);
 				$cur_page = $this->CI->uri->segment( $config[ 'uri_segment'] );
 
-				if( !is_array( $cur_page ) ){
+				if( !is_array( $cur_page ) )
+				{
 					$cur_page = intval( $cur_page );
-				}else{
+				}
+				else
+				{
 					$cur_page = 0;
 				}
 
 				//trace( $cur_page, TRUE );
-				if( isset( $this->pages[ $cur_page ] )){
+				if( isset( $this->pages[ $cur_page ] ))
+				{
 					$data = $this->pages[ $cur_page ];
-				}else{
+				}
+				else
+				{
 					$data = $this->CI->lang->line( 'fire_log_no_results_found' );
 				}
 
 
 				$data = ltrim( $data, "\n" );
-
-
-
 				$data = ltrim( $data, "\n" );
+
 				$data = str_replace( 'DEBUG', '<div class="debug">DEBUG', $data );
 				$data = str_replace( 'ERROR', '<div class="error">ERROR', $data );
 				$data = str_replace( 'INFO', '<div class="info">INFO', $data );
-				$data = str_replace( "\n", "</div>\n", $data );
+				$data = str_replace( "<div", "</div><div", $data );
+				//				$data = ltrim( $data, '<div class="logContainer"></div>' );
 
+				$data = substr($data, 6 );
 
-
-			}else{
+			}
+			else
+			{
 				$msg = $this->CI->lang->line( 'fire_log_not_found' );
 				$msg = str_replace( '%log_file%', $this->log_file, $msg );
 				$data = $msg;
@@ -148,17 +166,21 @@ class Fire_log{
 
 		}
 
-		public function clear_file( $log_file ){
+		public function clear_file( $log_file )
+		{
 			$file = APPPATH . 'logs/' . $log_file;
-			if( file_exists( $file )){
+			if( file_exists( $file ))
+			{
 				@unlink( $file );
 			}
 		}
 
 
-		function split_files( $source, $lines=75 ){
+		function split_files( $source, $lines=75 )
+		{
 
-			if( param_is_valid( 'filter', array( 'debug,info,error' )) != FALSE ){
+			if( param_is_valid( 'filter', array( 'debug,info,error' )) != FALSE )
+			{
 				$this->filter = TRUE;
 			}
 
@@ -167,11 +189,13 @@ class Fire_log{
 
 			$handle = fopen( $source, "r" );
 
-			while (!feof ($handle)) {
+			while (!feof ($handle))
+			{
 
 				$content = fgets( $handle, 496);
 
-				if( $this->CI->config->item( 'fire_log_strip_tags') ){
+				if( $this->CI->config->item( 'fire_log_strip_tags') )
+				{
 					$content = strip_tags( $content );
 				}
 
@@ -179,7 +203,8 @@ class Fire_log{
 				$buffer .= $content;
 				$i++;
 
-				if ($i >= $lines) {
+				if ($i >= $lines)
+				{
 					array_push( $this->pages, $buffer );
 					$buffer='';
 					$i=0;
@@ -191,24 +216,30 @@ class Fire_log{
 
 
 
-			if( $this->filter ){
+			if( $this->filter )
+			{
 
 				$temp_pages = array();
 				$temp_page = '';
 
-				foreach ($this->pages as $page ) {
+				foreach ($this->pages as $page )
+				{
 
 					$page = $this->filter( $page );
 
-					if( strlen( $temp_page ) < 5000 ){
+					if( strlen( $temp_page ) < 5000 )
+					{
 						$temp_page .= $page;
-					}else{
+					}
+					else
+					{
 						array_push( $temp_pages, $temp_page );
 						$temp_page = '';
 					}
 				}
 
-				if( !empty( $temp_page )){
+				if( !empty( $temp_page ))
+				{
 					array_push( $temp_pages, $temp_page );
 				}
 
@@ -217,12 +248,14 @@ class Fire_log{
 		}
 
 
-		public function filter( $str ){
+		public function filter( $str )
+		{
 
 			$content = $str;
 
 
-			switch ($this->url_vals[ 'filter' ]) {
+			switch ($this->url_vals[ 'filter' ])
+			{
 				case 'debug':	
 				$content = preg_replace( "~INFO.*\n~", '', $content );
 				$content = preg_replace( "~ERROR.*\n~", '', $content );
@@ -239,6 +272,6 @@ class Fire_log{
 			return $content;
 		}
 
-	}
+	} // end Fire_log
 
 
