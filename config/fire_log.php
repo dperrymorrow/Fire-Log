@@ -1,7 +1,6 @@
 <?php
 
 
-$config[ 'fire_log_version' ] = '0.6';
 $config[ 'fire_log_strip_tags' ] = TRUE;
 $config[ 'fire_log_param_dilem' ] = "::";
 $config[ 'fire_log_pagination_settings'] = array( 	
