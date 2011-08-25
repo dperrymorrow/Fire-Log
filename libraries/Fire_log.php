@@ -97,8 +97,10 @@ class Fire_log{
 				array_push( $filtered_list, $file ); 
 
 			}
+			//Order list by file name
+			usort($filtered_list, create_function('$a, $b', 'return strcmp($b["name"], $a["name"]);'));
 
-			return array_reverse( $filtered_list );
+			return $filtered_list;
 		}
 
 		public function get_file( $log_file )
