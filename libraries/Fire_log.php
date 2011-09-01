@@ -213,6 +213,10 @@ class Fire_log{
 					$lines += 75;
 				}
 			}
+			
+			if ( !empty( $buffer )) {
+				array_push( $this->pages, $buffer );
+			}			
 
 			fclose ($handle);
 
