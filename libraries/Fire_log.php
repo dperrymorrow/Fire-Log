@@ -94,7 +94,10 @@ class Fire_log{
 					$file[ 'suffix'] = ' - (' . $this->CI->lang->line( 'fire_log_today' ) . ')';
 				}
 
-				array_push( $filtered_list, $file ); 
+				if( $file[ 'name' ] != 'index.html' )
+				{
+					array_push( $filtered_list, $file ); 
+				}
 
 			}
 			//Order list by file name
