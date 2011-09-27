@@ -31,10 +31,10 @@
 			?>
 			<a href="<?php echo build_spark_url( array( 'delete'=>$log_file_name ), TRUE )?>" onclick="return confirm('Are You Sure?');" class="deleteFile" >DELETE CURRENT FILE</a>
 			</div>
-			<?php echo str_replace( "&nbsp;", '', $this->pagination->create_links() ); ?>
+			<?php echo str_replace( "&nbsp;", '', $pagination_links ); ?>
 			
 		<div class="logContainer"><?php echo $log_contents ?></div>
-		<?php echo str_replace( "&nbsp;", '', $this->pagination->create_links() ); ?>
+		<?php echo str_replace( "&nbsp;", '', $pagination_links ); ?>
 		</div>
 	</div>
 </body>
