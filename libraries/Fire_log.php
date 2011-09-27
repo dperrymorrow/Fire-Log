@@ -69,6 +69,7 @@ class Fire_log{
 			$data[ 'list' ] = $this->list_files();
 			$data[ 'log_contents' ] = $this->get_file( $this->log_file );
 			$data[ 'log_file_name' ] = $this->log_file;
+			$data[ 'pagination_links' ] = $this->CI->pagination->create_links();
 			$this->CI->load->view( 'fire_log_view', $data );
 		}
 
