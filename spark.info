@@ -8,11 +8,11 @@ name: fire_log
 # This is the current version of this spark. All sparks should be in
 #  x.x.x format. Validation will fail otherwise. This is the version
 #  that will appear on the website.
-version: 0.7.0
+version: 0.8.2
 
 # This is the version of CodeIgniter this spark is compatible up to. It should
 #  be in x.x.x format
-compatibility: 2.0.2
+compatibility: 2.0.3
 
 # These are other sparks which this spark needs in order to work correctly.
 #  Dependencies should be in NAME: VERSION format, where NAME is an existing

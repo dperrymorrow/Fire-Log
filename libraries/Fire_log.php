@@ -25,7 +25,8 @@ class Fire_log{
 		//		log_message( 'info', 'Hey there, You are running Fire Log Spark Version ' .$this->CI->config->item( 'fire_log_version') );	
 
 		//echo getcwd();
-		$this->CI->load->_ci_view_path = dirname(__DIR__).DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR;
+		
+		//$this->CI->load->_ci_view_path = dirname(__DIR__).DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR;
 		$this->today = 'log-'.date( 'Y-m-d') . '.php';
 
 
@@ -70,7 +71,12 @@ class Fire_log{
 			$data[ 'log_contents' ] = $this->get_file( $this->log_file );
 			$data[ 'log_file_name' ] = $this->log_file;
 			$data[ 'pagination_links' ] = $this->CI->pagination->create_links();
+			
+			$view_dir = dirname(__FILE__).DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR;
+			
+			$this->CI->load->add_package_path( $view_dir );
 			$this->CI->load->view( 'fire_log_view', $data );
+			$this->CI->load->remove_package_path( $view_dir );
 		}
 
 
