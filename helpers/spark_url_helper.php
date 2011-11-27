@@ -23,7 +23,7 @@ function build_spark_url( $params, $prepend_base=TRUE )
 
 	if( substr_count( $base, '/' ) != 2 )
 	{
-		$base = $CI->router->fetch_class() . '/' . $CI->router->fetch_method() .'/';
+		$base = $CI->router->fetch_directory().$CI->router->fetch_class() . '/' . $CI->router->fetch_method() .'/';
 	}
 
 	foreach ($params as $key => $value) {
