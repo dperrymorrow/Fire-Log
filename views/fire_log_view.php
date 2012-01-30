@@ -30,6 +30,7 @@
 			
 			?>
 			<a href="<?php echo build_spark_url( array( 'delete'=>$log_file_name ), TRUE )?>" onclick="return confirm('Are You Sure?');" class="deleteFile" >DELETE CURRENT FILE</a>
+			<a href="<?php echo build_spark_url( array( 'delete_all' => $log_file_name ), TRUE )?>" onclick="return confirm('Are You Sure?');" class="deleteFile" >DELETE ALL FILES</a>
 			</div>
 			<?php echo str_replace( "&nbsp;", '', $pagination_links ); ?>
 			

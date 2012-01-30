@@ -47,6 +47,23 @@ class Fire_log{
 				$this->log_file = $this->today;
 				redirect( current_url().'/file'.PARAM_DILEM .$this->today);
 			}
+			else if( isset( $params[ 'delete_all' ] ))
+			{
+				$all = $this->list_files();
+				if ( ! empty($all))
+				{
+					foreach ($all as $f)
+					{
+						if ($f['name'] === 'index.html') continue; // Don't delete index.html
+						$this->clear_file($f['name']);
+					}
+					
+					log_message('info', $this->CI->lang->line( 'fire_log_file_deleted' ) . $params[ 'delete_all'] );
+				}				
+
+				$this->log_file = $this->today;
+				redirect( current_url().'/file'.PARAM_DILEM .$this->today);
+			}
 			else
 			{
 				redirect( current_url().'/file'.PARAM_DILEM .$this->today);
