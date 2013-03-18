@@ -17,6 +17,8 @@ class Fire_log{
 		$this->CI->load->helper( array('file','url') );	
 		$this->CI->load->library( 'pagination' );
 
+		$this->log_path = $this->CI->config->item( 'log_path' );
+
 
 		define( 'PARAM_DILEM', $this->CI->config->item( 'fire_log_param_dilem' ));
 
@@ -100,7 +102,7 @@ class Fire_log{
 
 		public function list_files()
 		{
-			$list = get_dir_file_info( APPPATH . 'logs' );
+			$list = get_dir_file_info( $this->log_path );
 			$filtered_list = array();
 
 			foreach ($list as $file )
@@ -133,7 +135,7 @@ class Fire_log{
 		public function get_file( $log_file )
 		{
 
-			$path = APPPATH . 'logs/' .$log_file;
+			$path = $this->log_path .$log_file;
 
 			if( file_exists( $path ))
 			{
