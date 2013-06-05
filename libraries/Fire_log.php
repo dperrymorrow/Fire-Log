@@ -199,7 +199,7 @@ class Fire_log{
 
 		public function clear_file( $log_file )
 		{
-			$file = APPPATH . 'logs/' . $log_file;
+			$file = $this->log_path . $log_file;
 			if( file_exists( $file ))
 			{
 				@unlink( $file );
