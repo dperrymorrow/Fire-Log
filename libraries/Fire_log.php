@@ -17,6 +17,9 @@ class Fire_log{
 		$this->CI->load->helper( array('file','url') );	
 		$this->CI->load->library( 'pagination' );
 
+		//HMVC compatible
+		$this->CI->lang->load('fire_log', $this->CI->config->item('language'), FALSE, TRUE, APPPATH . '../sparks/fire_log/'); 
+
 		$this->log_path = $this->CI->config->item( 'log_path' );
 
 
